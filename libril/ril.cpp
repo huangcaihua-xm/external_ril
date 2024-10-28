@@ -336,7 +336,9 @@ static int processCommandBuffer(void* buffer, size_t buflen)
     int32_t request;
     int32_t token;
     RequestInfo* pRI;
-    int ret __unused;
+    int ret = 0;
+
+    (void)ret;
 
     p.setData((uint8_t*)buffer, buflen);
 
@@ -2406,8 +2408,10 @@ static void processWakeupCallback(int fd, short flags, void* param)
 
 static void onCommandsSocketClosed(void)
 {
-    int ret __unused;
+    int ret = 0;
     RequestInfo* p_cur;
+
+    (void)ret;
 
     /* mark pending requests as "cancelled" so we dont report responses */
     ret = pthread_mutex_lock(&s_pendingRequestsMutex);
